@@ -46,7 +46,7 @@ fn generate_solution(random: fn(u8) -> u8) -> [u8; 4] {
 
 fn random_generator(max: u8) -> u8 {
     let mut rng = rand::thread_rng();
-    rng.gen_range(1..max + 1)
+    rng.gen_range(1..=max)
 }
 
 #[test]
@@ -92,7 +92,7 @@ fn main() {
       
     loop {
         buf.clear();
-        print!("guess: ");
+        println!("guess: ");
         stdin.read_line(&mut buf).unwrap();
         let guess : Result<Vec<u8>, _> = buf.trim().split(' ').map(|s| s.parse()).collect();
         let guess = guess.unwrap();  
